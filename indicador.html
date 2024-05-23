@@ -129,6 +129,21 @@ src="https://www.facebook.com/tr?id=1465553214269014&ev=PageView&noscript=1"
 
 
  
+ @keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulsing {
+    animation: pulse 0.6s infinite;
+}
 
         
         body {
@@ -243,24 +258,37 @@ src="https://www.facebook.com/tr?id=1465553214269014&ev=PageView&noscript=1"
 		   </div>
         <div id="people-text">0 PESSOAS RECEBERAM ESSA ENTRADA</div>
         <button id="analysis-button" onclick="startAnalysis()">BUSCAR SINAL</button>
+
     </div>
     <script>
-        var wideBoxTexts =  ["ANALISANDO O MERCADO...", "LENDO O GRÁFICO...", "IDENTIFICANDO PADRÕES DE VELAS...", "VERIFICANDO FLUXO DE VELAS...", "IDENTIFICANDO PRICE ACTION...", "AGUARDE, JÁ ESTOU IDENTIFICANDO...", "SÓ UM MOMENTO...", "CALCULANDO CONFLUÊNCIA", "IDENTIFICANDO UM SINAL JÁ...", "SINAL IDENTIFICADO COM SUCESSO!!"];
+        var wideBoxTexts = ["ANALISANDO O MERCADO...", "LENDO VELAS ANTERIORES...", "IDENTIFICANDO PADRÕES DE VELAS...", "VERIFICANDO FLUXO DE VELAS...", "IDENTIFICANDO PRICE ACTION...","SÓ UM SEGUNDO...", "IDENTIFIQUEI COM SUCESSO!!"];
         var wideBoxIndex = 0;
         var analysisTimeOut;
-        
+     
     
         function startAnalysis() {
             var currentTime = new Date();
             var dayOfWeek = currentTime.getDay(); // 0 é Domingo, 6 é Sábado
             var currentHour = currentTime.getHours();
-    
+        
+document.addEventListener("DOMContentLoaded", function() {
+    var button = document.getElementById("analyze-button");
+
+    button.addEventListener("click", function() {
+        button.classList.add("pulsing");
+        
+        // Remover a classe após um tempo para parar o efeito de pulsação
+        setTimeout(function() {
+            button.classList.remove("pulsing");
+        }, 10000); // A mesma duração da animação em CSS
+    });
+});
+
             var shouldShowOTC = false;
             if ((dayOfWeek >= 1 && dayOfWeek <= 5 && ((currentHour >= 16 && currentHour <= 23) || (currentHour >= 0 && currentHour < 2))) || dayOfWeek === 0 || dayOfWeek === 6) {
                 shouldShowOTC = true;
             }
-    
-            var names = ["AUD/CAD", "EUR/USD", "GBP/JPY", "EUR/JPY", "GBP/USD", "AUDUSD", "USDCAD"];
+            var names = ["AUD/JPY", "EUR/USD", "GBP/JPY", "USD/JPY"];
             if (shouldShowOTC) {
                 names = names.map(name => name + "-OTC");
             }
@@ -285,7 +313,7 @@ src="https://www.facebook.com/tr?id=1465553214269014&ev=PageView&noscript=1"
             var intervalTime = analysisTime / (wideBoxTexts.length - 1);
     
             var wideBoxInterval = setInterval(function() {
-                if (wideBoxIndex < wideBoxTexts.length - 1) {
+                if (wideBoxIndex < wideBoxTexts.length -1) {
                     wideBoxIndex++;
                     document.getElementById("wide-box").textContent = wideBoxTexts[wideBoxIndex];
                 }
@@ -297,14 +325,20 @@ src="https://www.facebook.com/tr?id=1465553214269014&ev=PageView&noscript=1"
     
                 var name = names[Math.floor(Math.random() * names.length)];
                 document.getElementById("activeResult").textContent = name;
-    
-                // Define diretamente o timeResultText como "M1"
+
                 var timeResultText = "M1";
-                document.getElementById("timeResult").textContent = timeResultText;
-    
-                // Lógica para exibir os sinais de acordo com o intervalo de tempo selecionado
-                var order = Math.random() < 0.5 ? "COMPRA" : "VENDA";
-                orderResult.innerHTML = order === "COMPRA" ? "<span class='green-text'>" + order + "</span>" : "<span class='red-text'>" + order + "</span>";
+    document.getElementById("timeResult").textContent = timeResultText;
+
+    var order = Math.random() < 0.5 ? "VENDA" : "COMPRA";
+    document.getElementById("orderResult").textContent = order;
+
+        // Aplicando a classe correspondente para destacar a palavra
+        if (order === "COMPRA") {
+            document.getElementById("orderResult").innerHTML = "<span class='green-text'>" + order + "</span>";
+        } else {
+            document.getElementById("orderResult").innerHTML = "<span class='red-text'>" + order + "</span>";
+        }
+
     
                 document.getElementById("people-text").textContent = Math.floor(Math.random() * (215 - 56 + 1) + 56) + " PESSOAS RECEBERAM ESSA ENTRADA";
     
@@ -322,7 +356,7 @@ src="https://www.facebook.com/tr?id=1465553214269014&ev=PageView&noscript=1"
     
                 document.getElementById("wide-box").textContent = wideBoxTexts[wideBoxTexts.length - 1];
     
-                analysisButton.textContent = "ANALISAR OUTRO SINAL";
+                analysisButton.textContent = "BUSCAR OUTRO SINAL";
                 analysisButton.classList.remove("pulsing");
             }, analysisTime);
         }
@@ -333,8 +367,9 @@ src="https://www.facebook.com/tr?id=1465553214269014&ev=PageView&noscript=1"
             imagem.style.display = 'block'; // Exibe a imagem
             setTimeout(function() {
                 imagem.style.display = 'none'; // Oculta a imagem após 4 segundos
-            }, 5000); // 5000 milissegundos = 4 segundos
+            }, 4000); // 4000 milissegundos = 4 segundos
         }
+        
     </script>
     
 </body>
