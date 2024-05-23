@@ -13,26 +13,33 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14
 !function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83e\udef1\ud83c\udffb\u200d\ud83e\udef2\ud83c\udfff","\ud83e\udef1\ud83c\udffb\u200b\ud83e\udef2\ud83c\udfff")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
 </script>
 <style>
-  @media (max-width: 768px) {
-        #top-image {
-            width: 200px; /* Reduz a largura da imagem em telas menores */
-        }
-    }
 
-    @media (max-width: 480px) {
-        #top-image {
-            width: 150px; /* Reduz ainda mais a largura da imagem em telas muito pequenas */
-        }
+
+
+#top-image {
+    position: fixed;
+    top: 10px; /* Ajuste a posição vertical conforme necessário */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+    width: 280px; /* Largura da imagem */
+    z-index: 9999; /* Garante que a imagem fique sobre outros elementos */
+    display: none; /* Começa oculta */
+    max-width: 100%; /* Garante que a imagem não exceda a largura da tela */
+}
+
+/* Estilos para telas menores que 768px */
+@media (max-width: 768px) {
+    #top-image {
+        width: 200px; /* Reduz a largura da imagem em telas menores */
     }
- #top-image {
-            position: fixed;
-            top: 10px; /* Ajuste a posição vertical conforme necessário */
-            left: 50%; /* Centraliza horizontalmente */
-            transform: translateX(-50%); /* Centraliza horizontalmente */
-            width: 280px; /* Largura da imagem */
-            z-index: 9999; /* Garante que a imagem fique sobre outros elementos */
-            display: none; /* Começa oculta */
-        }
+}
+
+/* Estilos para telas menores que 480px */
+@media (max-width: 480px) {
+    #top-image {
+        width: 150px; /* Reduz ainda mais a largura da imagem em telas muito pequenas */
+    }
+}
         
         .green-text {
       color: rgb(49, 221, 49);
@@ -138,14 +145,14 @@ src="https://www.facebook.com/tr?id=1465553214269014&ev=PageView&noscript=1"
         }
         #main-box {
             background-color: #292929;
-            padding: 20px;
+            padding: 5px;
             width: 90%;
-            margin: -25px auto;
+            margin: -15px auto;
             border-radius: 10px;
         }
         #wide-box {
             background-color: #0a3b44;
-            padding: 5px;
+            padding: -75px;
             border-radius: 20px;
             width: 100%;
             text-align: center;
@@ -168,29 +175,29 @@ src="https://www.facebook.com/tr?id=1465553214269014&ev=PageView&noscript=1"
             text-align: center;
         }
         .result-title {
-            padding: 5px;
+            padding: 3px;
             width: 100%;
             color: #6d6d6d;
             text-align: center;
         }
         .result-content {
-            padding: 5px;
+            padding: 3px;
             width: 100%;
             text-align: center;
         }
         #people-text {
             color: #ffffff;
-            font-size: 12px;
+            font-size: 10px;
             margin-top: 10px;
         }
         button {
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 14px;
             border: none;
             background-color: #207e91;
             color: white;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 55px;
             margin-top: 20px;
             transition: background-color 0.3s;
         }
@@ -199,18 +206,22 @@ src="https://www.facebook.com/tr?id=1465553214269014&ev=PageView&noscript=1"
         }
         button.pulsing {
             animation: pulse 1s infinite;
-            background-color: rgb(32, 178, 183);
+            background-color: rgb(50, 216, 219);
             color: black;
         }
     </style>
 </head>
 <body>
-    <img decoding="async" fetchpriority="high" style="max-width: 45%; height: auto; margin-top: -85px;" 
-     src="foto.png" class="attachment-large size-large wp-image-12" 
-     alt="" sizes="(max-width: 150px) 150vw, 150px" />
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <img decoding="async" fetchpriority="high" style="max-width: 40%; height: auto; margin-top: -5px; display: block;" 
+             src="foto.png" class="attachment-large size-large wp-image-12" 
+             alt="" sizes="(max-width: 150px) 150vw, 150px" />
+        <!-- Outros elementos aqui -->
+    </div>
+    
 
     <div id="main-box">
-        <div id="wide-box">CLIQUE EM BUSCAR SINAL PARA ANALISAR UM AENTRADA</div>
+        <div id="wide-box">CLIQUE EM BUSCAR SINAL PARA ANALISAR UMA ENTRADA</div>
         <div class="result-wrapper">
             <div class="result-box">
                 <div class="result-title">ATIVO:</div>
@@ -236,6 +247,7 @@ src="https://www.facebook.com/tr?id=1465553214269014&ev=PageView&noscript=1"
         var wideBoxTexts = ["ANALISANDO O MERCADO...", "LENDO O GRÁFICO...", "IDENTIFICANDO PADRÕES DE VELAS...", "VERIFICANDO FLUXO DE VELAS...", "IDENTIFICANDO PRICE ACTION...","IDENTIFICANDO UM SINAL...", "SINAL IDENTIFICADO COM SUCESSO!!"];
         var wideBoxIndex = 0;
         var analysisTimeOut;
+        
     
         function startAnalysis() {
             var currentTime = new Date();
