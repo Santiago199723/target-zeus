@@ -168,7 +168,7 @@ src="https://www.facebook.com/tr?id=1465553214269014&ev=PageView&noscript=1"
             align-items: center;
             background-color: #373737;
             border-radius: 5px;
-            padding: 10px;
+            padding: 5px;
         }
         .result-box {
             flex-grow: 1;
@@ -209,42 +209,43 @@ src="https://www.facebook.com/tr?id=1465553214269014&ev=PageView&noscript=1"
             background-color: rgb(50, 216, 219);
             color: black;
         }
+        
     </style>
 </head>
 <body>
     <div style="display: flex; flex-direction: column; align-items: center;">
-        <img decoding="async" fetchpriority="high" style="max-width: 40%; height: auto; margin-top: -5px; display: block;" 
-             src="foto.png" class="attachment-large size-large wp-image-12" 
-             alt="" sizes="(max-width: 150px) 150vw, 150px" />
+        <img decoding="async" fetchpriority="high" style="max-width: 50%; height: auto; margin-top: -20px; display: block;" 
+             src="foto.png" 
+             alt="" sizes="(max-width: 500px) 150vw, 150px" />
         <!-- Outros elementos aqui -->
     </div>
     
 
     <div id="main-box">
-        <div id="wide-box">CLIQUE EM BUSCAR SINAL PARA ANALISAR UMA ENTRADA</div>
+        <div id="wide-box" style="font-size: 13px;">CLIQUE EM BUSCAR SINAL PARA ANALISAR UMA ENTRADA</div>
         <div class="result-wrapper">
             <div class="result-box">
-                <div class="result-title">ATIVO:</div>
+                <div class="result-title" style="font-size: 12px;">ATIVO:</div>
                 <div class="result-content" id="activeResult"></div>
             </div>
             <div class="result-box">
-                <div class="result-title">TIMEFRAME:</div>
+                <div class="result-title" style="font-size: 12px;">TIMEFRAME:</div>
                 <div class="result-content" id="timeResult"></div>
             </div>
             <div class="result-box">
-                <div class="result-title">ORDEM:</div>
+                <div class="result-title" style="font-size: 12px;">ORDEM:</div>
                 <div class="result-content" id="orderResult"></div>
             </div>
-			<div class="result-box">
-            <div class="result-title">HORÁRIO:</div>
-            <div class="result-content" id="horarioResult"></div>
-           </div>
+            <div class="result-box">
+                <div class="result-title" style="font-size: 12px;">HORÁRIO:</div>
+                <div class="result-content" id="horarioResult"></div>
+            </div>
 		   </div>
         <div id="people-text">0 PESSOAS RECEBERAM ESSA ENTRADA</div>
         <button id="analysis-button" onclick="startAnalysis()">BUSCAR SINAL</button>
     </div>
     <script>
-        var wideBoxTexts = ["ANALISANDO O MERCADO...", "LENDO O GRÁFICO...", "IDENTIFICANDO PADRÕES DE VELAS...", "VERIFICANDO FLUXO DE VELAS...", "IDENTIFICANDO PRICE ACTION...","IDENTIFICANDO UM SINAL...", "SINAL IDENTIFICADO COM SUCESSO!!"];
+        var wideBoxTexts =  ["ANALISANDO O MERCADO...", "LENDO O GRÁFICO...", "IDENTIFICANDO PADRÕES DE VELAS...", "VERIFICANDO FLUXO DE VELAS...", "IDENTIFICANDO PRICE ACTION...", "AGUARDE, JÁ ESTOU IDENTIFICANDO...", "SÓ UM MOMENTO...", "CALCULANDO CONFLUÊNCIA", "IDENTIFICANDO UM SINAL JÁ...", "SINAL IDENTIFICADO COM SUCESSO!!"];
         var wideBoxIndex = 0;
         var analysisTimeOut;
         
